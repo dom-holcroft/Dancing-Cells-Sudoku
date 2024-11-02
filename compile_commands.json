@@ -1,20 +1,20 @@
 [
 {
-  "directory": "/home/dominic/Documents/projects/sudoku-solver-tui",
-  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/sudoku-solver-tui/include  -o CMakeFiles/tui.dir/src/main.c.o -c /home/dominic/Documents/projects/sudoku-solver-tui/src/main.c",
-  "file": "/home/dominic/Documents/projects/sudoku-solver-tui/src/main.c",
+  "directory": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku",
+  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/Dancing-Cells-Sudoku/include  -o CMakeFiles/tui.dir/src/main.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/main.c",
+  "file": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/main.c",
   "output": "CMakeFiles/tui.dir/src/main.c.o"
 },
 {
-  "directory": "/home/dominic/Documents/projects/sudoku-solver-tui",
-  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/sudoku-solver-tui/include  -o CMakeFiles/tui.dir/src/tui.c.o -c /home/dominic/Documents/projects/sudoku-solver-tui/src/tui.c",
-  "file": "/home/dominic/Documents/projects/sudoku-solver-tui/src/tui.c",
+  "directory": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku",
+  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/Dancing-Cells-Sudoku/include  -o CMakeFiles/tui.dir/src/tui.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/tui.c",
+  "file": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/tui.c",
   "output": "CMakeFiles/tui.dir/src/tui.c.o"
 },
 {
-  "directory": "/home/dominic/Documents/projects/sudoku-solver-tui",
-  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/sudoku-solver-tui/include  -o CMakeFiles/tui.dir/src/graphics.c.o -c /home/dominic/Documents/projects/sudoku-solver-tui/src/graphics.c",
-  "file": "/home/dominic/Documents/projects/sudoku-solver-tui/src/graphics.c",
+  "directory": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku",
+  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/Dancing-Cells-Sudoku/include  -o CMakeFiles/tui.dir/src/graphics.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c",
+  "file": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c",
   "output": "CMakeFiles/tui.dir/src/graphics.c.o"
 }
 ]

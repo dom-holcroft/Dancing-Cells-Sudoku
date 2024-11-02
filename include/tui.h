@@ -1,6 +1,7 @@
 #ifndef TUI_H
 #define TUI_H
 
+#include <stdint.h>
 #include <stdio.h>
 #include <termios.h>
 #include <stdbool.h>
@@ -10,14 +11,18 @@
 typedef struct {
     char symbol[UNICODE_MAX_LEN];
     size_t symbolByteLength;
-    bool dirty;
-    bool bold;
-    bool italics;
-    bool faint;
-    bool blinking;
-    bool reverse;
-    bool strikethough;
-    bool underline;
+    /**
+     * Ansi Options per bit
+     * dirty
+     * bold
+     * italics
+     * faint
+     * blinking
+     * reverse
+     * strikethough
+     * underline
+     */
+    uint8_t ansiOptions;
     int colour;
 } TChar;
 
@@ -27,26 +32,35 @@ typedef struct {
 } Display;
 
 typedef struct {
-    Display* display;
+    Display display;
     unsigned int viewportX, viewportY;
 } Canvas;
 
 typedef struct {
+    int cursorX, cursorY;
+    bool cursorShown;
+} Cursor;
+
+typedef struct {
     struct termios originalTerminal, raw;
     int tty;
-    unsigned int cursorX, cursorY;
-    Display *screen;
-    Canvas *canvas;
+    Cursor cursor;
+    Display screen;
+    Canvas canvas;
     char *finalWriteBuffer;
 } TuiContext;
 
 int writeAtPos(unsigned int x, unsigned int y, const char *text,
                TuiContext *tuiContext);
 
-void cursorStartPosition(unsigned int x, unsigned int y, TuiContext *tuiContext);
+void setCursor(unsigned int x, unsigned int y, TuiContext *tuiContext);
+
+void moveCursor(unsigned int x, unsigned int y, TuiContext *tuiContext);
 
 int setupTUI(TuiContext *tuiContext, unsigned int canvasWidth,
              unsigned int canvasHeight);
+
+int enableVirtualCursorMovement(TuiContext *tuiContext);
 
 void enableAutoResize();
 

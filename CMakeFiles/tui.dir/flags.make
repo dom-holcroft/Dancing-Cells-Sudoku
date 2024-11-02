@@ -4,7 +4,7 @@
 # compile C with /usr/lib64/ccache/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/dominic/Documents/projects/sudoku-solver-tui/include
+C_INCLUDES = -I/home/dominic/Documents/projects/Dancing-Cells-Sudoku/include
 
 C_FLAGS = 
 

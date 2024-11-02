@@ -22,7 +22,7 @@ void drawGrid(TuiContext* tuiContext) {
     int maxGridHeight = SUDOKU_GRID_SIZE * 2 + 1;
     int maxGridWidth = SUDOKU_GRID_SIZE * 4 + 2;
     int unicodeByteOffset;
-    Display* canvasDisplay = tuiContext->canvas->display;
+    Display* canvasDisplay = &tuiContext->canvas.display;
     const char* currentRow;
     for (int row = 0; row < canvasDisplay->height; ++row) {
         unsigned int colByte = 0;

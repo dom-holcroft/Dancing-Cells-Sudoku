@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dominic/Documents/projects/sudoku-solver-tui
+CMAKE_SOURCE_DIR = /home/dominic/Documents/projects/Dancing-Cells-Sudoku
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dominic/Documents/projects/sudoku-solver-tui
+CMAKE_BINARY_DIR = /home/dominic/Documents/projects/Dancing-Cells-Sudoku
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles /home/dominic/Documents/projects/sudoku-solver-tui//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles /home/dominic/Documents/projects/Dancing-Cells-Sudoku//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

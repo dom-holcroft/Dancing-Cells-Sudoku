@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dominic/Documents/projects/sudoku-solver-tui
+CMAKE_SOURCE_DIR = /home/dominic/Documents/projects/Dancing-Cells-Sudoku
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dominic/Documents/projects/sudoku-solver-tui
+CMAKE_BINARY_DIR = /home/dominic/Documents/projects/Dancing-Cells-Sudoku
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tui.dir/depend.make
@@ -72,44 +72,44 @@ include CMakeFiles/tui.dir/flags.make
 CMakeFiles/tui.dir/src/main.c.o: CMakeFiles/tui.dir/flags.make
 CMakeFiles/tui.dir/src/main.c.o: src/main.c
 CMakeFiles/tui.dir/src/main.c.o: CMakeFiles/tui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tui.dir/src/main.c.o"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tui.dir/src/main.c.o -MF CMakeFiles/tui.dir/src/main.c.o.d -o CMakeFiles/tui.dir/src/main.c.o -c /home/dominic/Documents/projects/sudoku-solver-tui/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tui.dir/src/main.c.o"
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tui.dir/src/main.c.o -MF CMakeFiles/tui.dir/src/main.c.o.d -o CMakeFiles/tui.dir/src/main.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/main.c
 
 CMakeFiles/tui.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tui.dir/src/main.c.i"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dominic/Documents/projects/sudoku-solver-tui/src/main.c > CMakeFiles/tui.dir/src/main.c.i
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/main.c > CMakeFiles/tui.dir/src/main.c.i
 
 CMakeFiles/tui.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tui.dir/src/main.c.s"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dominic/Documents/projects/sudoku-solver-tui/src/main.c -o CMakeFiles/tui.dir/src/main.c.s
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/main.c -o CMakeFiles/tui.dir/src/main.c.s
 
 CMakeFiles/tui.dir/src/tui.c.o: CMakeFiles/tui.dir/flags.make
 CMakeFiles/tui.dir/src/tui.c.o: src/tui.c
 CMakeFiles/tui.dir/src/tui.c.o: CMakeFiles/tui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tui.dir/src/tui.c.o"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tui.dir/src/tui.c.o -MF CMakeFiles/tui.dir/src/tui.c.o.d -o CMakeFiles/tui.dir/src/tui.c.o -c /home/dominic/Documents/projects/sudoku-solver-tui/src/tui.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tui.dir/src/tui.c.o"
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tui.dir/src/tui.c.o -MF CMakeFiles/tui.dir/src/tui.c.o.d -o CMakeFiles/tui.dir/src/tui.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/tui.c
 
 CMakeFiles/tui.dir/src/tui.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tui.dir/src/tui.c.i"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dominic/Documents/projects/sudoku-solver-tui/src/tui.c > CMakeFiles/tui.dir/src/tui.c.i
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/tui.c > CMakeFiles/tui.dir/src/tui.c.i
 
 CMakeFiles/tui.dir/src/tui.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tui.dir/src/tui.c.s"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dominic/Documents/projects/sudoku-solver-tui/src/tui.c -o CMakeFiles/tui.dir/src/tui.c.s
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/tui.c -o CMakeFiles/tui.dir/src/tui.c.s
 
 CMakeFiles/tui.dir/src/graphics.c.o: CMakeFiles/tui.dir/flags.make
 CMakeFiles/tui.dir/src/graphics.c.o: src/graphics.c
 CMakeFiles/tui.dir/src/graphics.c.o: CMakeFiles/tui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tui.dir/src/graphics.c.o"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tui.dir/src/graphics.c.o -MF CMakeFiles/tui.dir/src/graphics.c.o.d -o CMakeFiles/tui.dir/src/graphics.c.o -c /home/dominic/Documents/projects/sudoku-solver-tui/src/graphics.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tui.dir/src/graphics.c.o"
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tui.dir/src/graphics.c.o -MF CMakeFiles/tui.dir/src/graphics.c.o.d -o CMakeFiles/tui.dir/src/graphics.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c
 
 CMakeFiles/tui.dir/src/graphics.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tui.dir/src/graphics.c.i"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dominic/Documents/projects/sudoku-solver-tui/src/graphics.c > CMakeFiles/tui.dir/src/graphics.c.i
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c > CMakeFiles/tui.dir/src/graphics.c.i
 
 CMakeFiles/tui.dir/src/graphics.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tui.dir/src/graphics.c.s"
-	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dominic/Documents/projects/sudoku-solver-tui/src/graphics.c -o CMakeFiles/tui.dir/src/graphics.c.s
+	/usr/lib64/ccache/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c -o CMakeFiles/tui.dir/src/graphics.c.s
 
 # Object files for target tui
 tui_OBJECTS = \
@@ -125,7 +125,7 @@ tui: CMakeFiles/tui.dir/src/tui.c.o
 tui: CMakeFiles/tui.dir/src/graphics.c.o
 tui: CMakeFiles/tui.dir/build.make
 tui: CMakeFiles/tui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable tui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable tui"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tui.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -137,6 +137,6 @@ CMakeFiles/tui.dir/clean:
 .PHONY : CMakeFiles/tui.dir/clean
 
 CMakeFiles/tui.dir/depend:
-	cd /home/dominic/Documents/projects/sudoku-solver-tui && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dominic/Documents/projects/sudoku-solver-tui /home/dominic/Documents/projects/sudoku-solver-tui /home/dominic/Documents/projects/sudoku-solver-tui /home/dominic/Documents/projects/sudoku-solver-tui /home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles/tui.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dominic/Documents/projects/Dancing-Cells-Sudoku && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dominic/Documents/projects/Dancing-Cells-Sudoku /home/dominic/Documents/projects/Dancing-Cells-Sudoku /home/dominic/Documents/projects/Dancing-Cells-Sudoku /home/dominic/Documents/projects/Dancing-Cells-Sudoku /home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles/tui.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tui.dir/depend
 

@@ -1,5 +1,6 @@
 #include "tui.h"
 #include <fcntl.h>
+#include <pthread.h>
 #include <signal.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -9,6 +10,7 @@
 #include <termios.h>
 #include <time.h>
 #include <unistd.h>
+
 
 /**
  * @brief - ANSI escape code setup
@@ -44,6 +46,25 @@ typedef struct {
 int32_t MIN(int32_t a, int32_t b) { return ((a) < (b) ? a : b); }
 
 int32_t MAX(int32_t a, int32_t b) { return ((a) > (b) ? a : b); }
+ 
+enum TCharBitmask{
+    DIRTY,
+    BOLD,
+    ITALICS,
+    FAINT,
+    BLINKING,
+    REVERSE,
+    STRIKETHROUGH,
+    UNDERLINE
+};
+
+void setTCharOption(TChar *tChar, enum TCharBitmask tCharBitmask) {
+    tChar->ansiOptions = tChar->ansiOptions | (1 << tCharBitmask);
+}
+
+void clearTCharOption(TChar *tChar, enum TCharBitmask tCharBitmask) {
+    tChar->ansiOptions = tChar->ansiOptions & ~ (1 << tCharBitmask);
+}
 
 /**
  * @brief - gets the number of digits in a denary number
@@ -127,12 +148,13 @@ void moveCursorToPos(size_t x, size_t y, WriteBuffer *writeBuffer) {
  * current canvis and marking the cell as changed by updating dirty field.
  */
 int updateScreen(TuiContext *tuiContext) {
-    Display *screenDisplay = tuiContext->screen;
-    Canvas *canvas = tuiContext->canvas;
-    Display *canvasDisplay = canvas->display;
-    size_t count = 0;
+    Display *screenDisplay = &tuiContext->screen;
+    Canvas *canvas = &tuiContext->canvas;
+    Display *canvasDisplay = &canvas->display;
+    int count = 0;
     for (int row = canvas->viewportY; row < screenDisplay->height; ++row) {
         for (int col = canvas->viewportX; col < screenDisplay->width; ++col) {
+            count++;
             TChar *screenTChar =
                 &screenDisplay
                      ->screenDisplayArray[row * screenDisplay->width + col];
@@ -140,7 +162,7 @@ int updateScreen(TuiContext *tuiContext) {
                 &canvasDisplay
                      ->screenDisplayArray[row * canvasDisplay->width + col];
             if (symbolsChanged(screenTChar, canvasTChar)) {
-                screenTChar->dirty = true;
+                setTCharOption(screenTChar, DIRTY);
                 memcpy(screenTChar->symbol, canvasTChar->symbol,
                        UNICODE_MAX_LEN);
                 screenTChar->symbolByteLength = canvasTChar->symbolByteLength;
@@ -157,7 +179,7 @@ int updateScreen(TuiContext *tuiContext) {
  * concise write possible. Frees the buffer at the end.
  */
 int writeFromScreen(TuiContext *tuiContext) {
-    Display *screenDisplay = tuiContext->screen;
+    Display *screenDisplay = &tuiContext->screen;
     size_t bufferLength = screenDisplay->width * screenDisplay->height * 4 + 50;
     WriteBuffer writeBuffer = {
         .text = malloc(bufferLength), .length = bufferLength, .position = 0};
@@ -174,12 +196,12 @@ int writeFromScreen(TuiContext *tuiContext) {
             TChar *currentTChar =
                 &screenDisplay
                      ->screenDisplayArray[row * screenDisplay->width + col];
-            if (currentTChar->dirty) {
+            if (currentTChar->ansiOptions & (1 << DIRTY)) {
                 if (!currentlyWriting) {
                     moveCursorToPos(col, row, &writeBuffer);
                     currentlyWriting = true;
                 }
-                currentTChar->dirty = false;
+                clearTCharOption(currentTChar, DIRTY);
                 memcpy(writeBuffer.text + writeBuffer.position,
                        currentTChar->symbol, currentTChar->symbolByteLength);
                 writeBuffer.position += currentTChar->symbolByteLength;
@@ -189,7 +211,7 @@ int writeFromScreen(TuiContext *tuiContext) {
         }
         currentlyWriting = false;
     }
-    moveCursorToPos(tuiContext->cursorX, tuiContext->cursorY, &writeBuffer);
+    moveCursorToPos(tuiContext->cursor.cursorX, tuiContext->cursor.cursorY, &writeBuffer);
     write(tuiContext->tty, writeBuffer.text, writeBuffer.position);
     free(writeBuffer.text);
     return 0;
@@ -206,7 +228,7 @@ int writeAtPos(unsigned int x, unsigned int y, const char *text,
     if (text == NULL) {
         return -1;
     }
-    Display *canvasDisplay = tuiContext->canvas->display;
+    Display *canvasDisplay = &tuiContext->canvas.display;
     TChar *canvasArray = canvasDisplay->screenDisplayArray;
     size_t textLength = strlen(text);
     size_t UTF8ByteLength;
@@ -249,7 +271,9 @@ int allocateDisplay(Display *display) {
     for (int i = 0; i < arrayTotalSize; i++) {
         strcpy(display->screenDisplayArray[i].symbol, "");
         display->screenDisplayArray[i].symbolByteLength = 1;
+        display->screenDisplayArray->ansiOptions = 0;
     }
+
     return 0;
 }
 
@@ -268,19 +292,22 @@ int resizeDisplay(Display *display, unsigned int newWidth,
 
     for (size_t i = 0; i < newHeight; ++i) {
         unsigned int newCurrentRow = i * newWidth;
-        unsigned int ogCurrentRow = (i + MAX(0,ogHeight - newHeight)) * ogWidth;
+        unsigned int ogCurrentRow =
+            (i + MAX(0, ogHeight - newHeight)) * ogWidth;
         if (i < ogHeight) {
             memcpy(newScreenDisplayArray + newCurrentRow,
                    ogScreenDisplayArray + ogCurrentRow,
                    MIN(ogWidth, newWidth) * sizeof(TChar));
             if (newWidth > ogWidth) {
                 for (size_t j = 0; j < newWidth - ogWidth; ++j) {
-                    memset(newScreenDisplayArray + newCurrentRow + ogWidth, 0, (newWidth - ogWidth) * sizeof(TChar));
+                    memset(newScreenDisplayArray + newCurrentRow + ogWidth, 0,
+                           (newWidth - ogWidth) * sizeof(TChar));
                 }
             }
         } else {
             for (size_t j = 0; j < newWidth; j++) {
-                memset(newScreenDisplayArray + newCurrentRow, 0, newWidth * sizeof(TChar));
+                memset(newScreenDisplayArray + newCurrentRow, 0,
+                       newWidth * sizeof(TChar));
             }
         }
     }
@@ -289,26 +316,6 @@ int resizeDisplay(Display *display, unsigned int newWidth,
     display->height = newHeight;
     display->width = newWidth;
     return 0;
-}
-
-void setupScreen(Display *screen, Display *canvasDisplay) {
-    struct winsize sz;
-    ioctl(0, TIOCGWINSZ, &sz);
-    screen->width = MIN(sz.ws_col, canvasDisplay->width);
-    screen->height = MIN(sz.ws_row, canvasDisplay->height);
-    allocateDisplay(screen);
-}
-
-void setupCanvas(Canvas *canvas, unsigned int canvasWidth,
-                 unsigned int canvasHeight) {
-    canvas->display = malloc(sizeof(Display));
-    canvas->display->width = canvasWidth;
-    canvas->display->height = canvasHeight;
-    allocateDisplay(canvas->display);
-}
-
-void restoreTerm(TuiContext *tuiContext) {
-    tcsetattr(tuiContext->tty, TCSAFLUSH, &tuiContext->originalTerminal);
 }
 
 void enableAutoResize() {
@@ -326,11 +333,11 @@ int checkForResize(TuiContext *tuiContext) {
         return -1;
     }
 
-    Display *screenDisplay = tuiContext->screen;
-    Display *canvasDisplay = tuiContext->canvas->display;
+    Display *screenDisplay = &tuiContext->screen;
+    Display *canvasDisplay = &tuiContext->canvas.display;
     resized = 0;
     struct winsize sz;
-    if(ioctl(tuiContext->tty, TIOCGWINSZ, &sz) == -1) {
+    if (ioctl(tuiContext->tty, TIOCGWINSZ, &sz) == -1) {
         return -1;
     }
 
@@ -340,6 +347,27 @@ int checkForResize(TuiContext *tuiContext) {
     resizeDisplay(screenDisplay, width, height);
     refresh(tuiContext);
     return 0;
+}
+
+void setupScreen(Display *screen, Display *canvasDisplay) {
+    struct winsize sz;
+    ioctl(0, TIOCGWINSZ, &sz);
+    screen->width = MIN(sz.ws_col, canvasDisplay->width);
+    screen->height = MIN(sz.ws_row, canvasDisplay->height);
+    allocateDisplay(screen);
+}
+
+void setupCanvas(Canvas *canvas, unsigned int canvasWidth,
+                 unsigned int canvasHeight) {
+    canvas->display.width = canvasWidth;
+    canvas->display.height = canvasHeight;
+    canvas->viewportX = 0;
+    canvas->viewportY = 0;
+    allocateDisplay(&canvas->display);
+}
+
+void restoreTerm(TuiContext *tuiContext) {
+    tcsetattr(tuiContext->tty, TCSAFLUSH, &tuiContext->originalTerminal);
 }
 
 void rawTerminal(TuiContext *tuiContext) {
@@ -354,18 +382,48 @@ void rawTerminal(TuiContext *tuiContext) {
     tcsetattr(tuiContext->tty, TCSAFLUSH, &tuiContext->raw);
 }
 
-void cursorStartPosition(unsigned int x, unsigned int y, TuiContext *tuiContext) {
-    tuiContext->cursorX = x;
-    tuiContext->cursorY = y;
+
+void moveCursor(unsigned int x, unsigned int y, TuiContext *tuiContext) {
+    tuiContext->cursor.cursorX += x;
+    tuiContext->cursor.cursorY += y;
+}
+
+void setCursor(unsigned int x, unsigned int y, TuiContext *tuiContext) {
+    tuiContext->cursor.cursorX = x;
+    tuiContext->cursor.cursorY = y;
+}
+
+void* cursorMovement(void *arg) {
+    TuiContext *tuiContext = (TuiContext *)arg;
+    unsigned char buffer[1];
+    while(1) {
+        ssize_t result = read(tuiContext->tty, buffer, sizeof(buffer));
+        if(result > 0) {
+            if (buffer[0] == 'k') {
+                tuiContext->cursor.cursorY--;
+                refresh(tuiContext);
+            }
+            if (buffer[0] == 'j') {
+                tuiContext->cursor.cursorY++;
+                refresh(tuiContext);
+            }
+        usleep(500000);
+        }
+    }
+    return NULL;
+
+}
+
+int hasKeyBeenPressed() {
+    
 }
 
 int setupTUI(TuiContext *tuiContext, unsigned int canvasWidth,
              unsigned int canvasHeight) {
-
-    tuiContext->cursorX = 0;
-    tuiContext->cursorY = 0;
-
     int tty = open("/dev/tty", O_RDWR);
+    int flags = fcntl(tty, F_GETFL, 0);
+    fcntl(tuiContext->tty, F_SETFL, flags | O_NONBLOCK);
+
     tuiContext->tty = tty;
     if (tty == -1) {
         perror("Error opening /dev/tty");
@@ -381,11 +439,8 @@ int setupTUI(TuiContext *tuiContext, unsigned int canvasWidth,
     tuiContext->raw = tuiContext->originalTerminal;
     rawTerminal(tuiContext);
 
-    tuiContext->canvas = malloc(sizeof(Canvas));
-    tuiContext->screen = malloc(sizeof(Display));
-
-    setupCanvas(tuiContext->canvas, canvasWidth, canvasHeight);
-    setupScreen(tuiContext->screen, tuiContext->canvas->display);
+    setupCanvas(&tuiContext->canvas, canvasWidth, canvasHeight);
+    setupScreen(&tuiContext->screen, &tuiContext->canvas.display);
     write(tty, TERMINAL_SETUP, 21);
     return 0;
 }

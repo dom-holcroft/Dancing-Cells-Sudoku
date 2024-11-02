@@ -1,3 +1,3 @@
-/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles/tui.dir
-/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles/edit_cache.dir
-/home/dominic/Documents/projects/sudoku-solver-tui/CMakeFiles/rebuild_cache.dir
+/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles/tui.dir
+/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles/edit_cache.dir
+/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles/rebuild_cache.dir
