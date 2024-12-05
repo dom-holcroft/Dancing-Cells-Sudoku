@@ -13,11 +13,6 @@ const char BOLD_LINE_ROW[] = "┣━━━┿━━━┿━━━╋━━━�
 const char BOTTOM_ROW[] = "┗━━━┷━━━┷━━━┻━━━┷━━━┷━━━┻━━━┷━━━┷━━━┛";
 int SUDOKU_GRID_SIZE = 9;
 
-
-void drawNumbers(TuiContext* tuiContext, int numbers[9][9]) {
-    
-}
-
 void drawGrid(TuiContext* tuiContext) {
     int maxGridHeight = SUDOKU_GRID_SIZE * 2 + 1;
     int maxGridWidth = SUDOKU_GRID_SIZE * 4 + 2;
