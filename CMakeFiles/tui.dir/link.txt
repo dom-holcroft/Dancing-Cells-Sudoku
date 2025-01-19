@@ -1,1 +1,1 @@
-/usr/lib64/ccache/cc CMakeFiles/tui.dir/src/main.c.o CMakeFiles/tui.dir/src/tui.c.o CMakeFiles/tui.dir/src/graphics.c.o -o tui 
+/usr/lib64/ccache/cc CMakeFiles/tui.dir/src/main.c.o CMakeFiles/tui.dir/src/tui.c.o CMakeFiles/tui.dir/src/graphics.c.o -o tui

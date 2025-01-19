@@ -31,8 +31,6 @@ typedef struct {
 } Node;
 
 typedef struct {
-    uint16_t lName;
-    uint16_t rName;
     uint16_t pos;
     uint16_t size;
     uint16_t options[9];
@@ -51,6 +49,7 @@ void setupDancingCellArrays(DancingCellArrays *dancingCellArrays,
     dancingCellArrays->itemArray = malloc(itemArraySize * sizeof(uint16_t));
     dancingCellArrays->nodeArray = malloc(nodeArraySize * sizeof(Node));
     dancingCellArrays->setArray = malloc(itemArraySize * sizeof(Item));
+    dancingCellArrays->trailStack = malloc(sizeof(TrailStack));
     dancingCellArrays->trailStack->stack =
         malloc(sizeof(TrailEntry) * TRAIL_SIZE);
     dancingCellArrays->trailStack->top = -1;
@@ -87,8 +86,7 @@ void initDancingCellArrays(DancingCellArrays *dancingCellArrays, int *grid) {
                     int colIndexCol = 3 * 9 * digit + 9 + col;
                     int colIndexBlock = 3 * 9 * digit + 2 * 9 + blockIndex;
                     int colIndexSimple = 3 * 9 * 9 + (col + 9 * row);
-                    // fill in the 1's
-                    //
+                    
                     dancingCellArrays->nodeArray[rowIndex].itm =
                         dancingCellArrays->itemArray[colIndexSimple];
                     dancingCellArrays->nodeArray[rowIndex].loc =
@@ -156,9 +154,6 @@ void testNodeArray(DancingCellArrays *dancingCellArrays) {
     printf("\n");
     for (int i = 0; i < 324; ++i) {
         printf("%d", items[i]);
-        /* if (items[i] != 9 ) { */
-        /*     printf("theres an issue"); */
-        /* }  */
     }
     for (int i = 0; i < 324; ++i) {
         for (int j = 0; j < 9; ++j) {
@@ -184,21 +179,12 @@ void testNodeArray(DancingCellArrays *dancingCellArrays) {
 }
 
 void hide(DancingCellArrays dancingCellArrays, int i) {
-    /* printf("i is %d ", i); */
     for (int j = 0; j < dancingCellArrays.setArray[i].size; ++j) {
         int x = dancingCellArrays.setArray[i].options[j];
         int offset = 1;
 
-        /* printf("%d ", x); */
-        /* printf("%d,%d,%d,%d,%d\n" ,dancingCellArrays.nodeArray[x -1].loc, */
-        /*         dancingCellArrays.nodeArray[x].loc, */
-        /**/
-        /*         dancingCellArrays.nodeArray[x + 1].itm, */
-        /*         dancingCellArrays.nodeArray[x + 2].itm, */
-        /*         dancingCellArrays.nodeArray[x + 3].itm); */
         while (offset != 0) {
             Node *currentSibling = &dancingCellArrays.nodeArray[x + offset];
-            // printf("-%d, %d \n", currentSibling->itm, offset);
             if (currentSibling->itm < 0) {
                 offset += (currentSibling->itm);
                 continue;
@@ -244,17 +230,14 @@ c2:
     minSize = __INT_MAX__;
     for (int k = 0; k < active; ++k) {
         int item = dancingCellArrays.itemArray[k];
-        // printf("%d", dancingCellArrays.setArray[item].size);
         if (dancingCellArrays.setArray[item].size < minSize) {
             minSize = dancingCellArrays.setArray[item].size;
             i = item;
         }
     }
     if (minSize == __INT_MAX__) {
-        printf("Joshua!");
         return 0;
     }
-    // printf("%d", minSize);
     //  C3
 
     int k0 = active - 1;
@@ -288,13 +271,9 @@ c2:
         }
         t = t + active;
         yArray[l + 1] = t;
-        // printf("umm\n");
     }
 // C6
-// printf("rose\n");
 c6:
-    printf("l is %d, xArray val is %d \n", l,
-           dancingCellArrays.setArray[i].options[j]);
     xArray[l] = dancingCellArrays.setArray[i].options[j];
     oactive = active;
     k = oactive;
@@ -375,11 +354,7 @@ int main() {
     DancingCellArrays dancingCellArrays;
 
     initDancingCellArrays(&dancingCellArrays, grid);
-    printf("hi");
-    testNodeArray(&dancingCellArrays);
-    printf("yo");
     algorithmC(dancingCellArrays);
-    printf("solved\n");
 
     for (int l = 0; l < 81; ++l) {
         int nodeIndex = xArray[l];
@@ -403,7 +378,6 @@ int main() {
         int digit = remainder % 9;        // Extract digit
         grid[row * 9 + col] = digit + 1;
     }
-    // Display the solved grid
     printf("Solved Sudoku:\n");
     for (int row = 0; row < 9; ++row) {
         for (int col = 0; col < 9; ++col) {
