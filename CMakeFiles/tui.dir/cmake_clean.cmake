@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/tui.dir/src/dancingcells.c.o"
+  "CMakeFiles/tui.dir/src/dancingcells.c.o.d"
   "CMakeFiles/tui.dir/src/graphics.c.o"
   "CMakeFiles/tui.dir/src/graphics.c.o.d"
   "CMakeFiles/tui.dir/src/main.c.o"

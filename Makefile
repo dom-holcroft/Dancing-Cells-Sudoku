@@ -129,6 +129,30 @@ tui/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tui.dir/build.make CMakeFiles/tui.dir/build
 .PHONY : tui/fast
 
+src/dancingcells.o: src/dancingcells.c.o
+.PHONY : src/dancingcells.o
+
+# target to build an object file
+src/dancingcells.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tui.dir/build.make CMakeFiles/tui.dir/src/dancingcells.c.o
+.PHONY : src/dancingcells.c.o
+
+src/dancingcells.i: src/dancingcells.c.i
+.PHONY : src/dancingcells.i
+
+# target to preprocess a source file
+src/dancingcells.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tui.dir/build.make CMakeFiles/tui.dir/src/dancingcells.c.i
+.PHONY : src/dancingcells.c.i
+
+src/dancingcells.s: src/dancingcells.c.s
+.PHONY : src/dancingcells.s
+
+# target to generate assembly for a file
+src/dancingcells.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tui.dir/build.make CMakeFiles/tui.dir/src/dancingcells.c.s
+.PHONY : src/dancingcells.c.s
+
 src/graphics.o: src/graphics.c.o
 .PHONY : src/graphics.o
 
@@ -210,6 +234,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... tui"
+	@echo "... src/dancingcells.o"
+	@echo "... src/dancingcells.i"
+	@echo "... src/dancingcells.s"
 	@echo "... src/graphics.o"
 	@echo "... src/graphics.i"
 	@echo "... src/graphics.s"

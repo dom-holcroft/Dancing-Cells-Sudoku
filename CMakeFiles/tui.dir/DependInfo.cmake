@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/dancingcells.c" "CMakeFiles/tui.dir/src/dancingcells.c.o" "gcc" "CMakeFiles/tui.dir/src/dancingcells.c.o.d"
   "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c" "CMakeFiles/tui.dir/src/graphics.c.o" "gcc" "CMakeFiles/tui.dir/src/graphics.c.o.d"
   "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/main.c" "CMakeFiles/tui.dir/src/main.c.o" "gcc" "CMakeFiles/tui.dir/src/main.c.o.d"
   "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/tui.c" "CMakeFiles/tui.dir/src/tui.c.o" "gcc" "CMakeFiles/tui.dir/src/tui.c.o.d"

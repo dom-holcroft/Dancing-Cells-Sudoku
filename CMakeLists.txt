@@ -11,6 +11,7 @@ set(SOURCES
     src/main.c
     src/tui.c
     src/graphics.c
+    src/dancingcells.c
 )
 
 add_executable(tui ${SOURCES})

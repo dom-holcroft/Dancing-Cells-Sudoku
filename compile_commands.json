@@ -16,5 +16,11 @@
   "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/Dancing-Cells-Sudoku/include  -o CMakeFiles/tui.dir/src/graphics.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c",
   "file": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/graphics.c",
   "output": "CMakeFiles/tui.dir/src/graphics.c.o"
+},
+{
+  "directory": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku",
+  "command": "/usr/lib64/ccache/cc  -I/home/dominic/Documents/projects/Dancing-Cells-Sudoku/include  -o CMakeFiles/tui.dir/src/dancingcells.c.o -c /home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/dancingcells.c",
+  "file": "/home/dominic/Documents/projects/Dancing-Cells-Sudoku/src/dancingcells.c",
+  "output": "CMakeFiles/tui.dir/src/dancingcells.c.o"
 }
 ]

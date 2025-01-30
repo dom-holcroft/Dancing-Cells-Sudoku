@@ -81,12 +81,12 @@ clean: CMakeFiles/tui.dir/clean
 CMakeFiles/tui.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tui.dir/build.make CMakeFiles/tui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tui.dir/build.make CMakeFiles/tui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles --progress-num=1,2,3,4 "Built target tui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles --progress-num=1,2,3,4,5 "Built target tui"
 .PHONY : CMakeFiles/tui.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tui.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dominic/Documents/projects/Dancing-Cells-Sudoku/CMakeFiles 0
 .PHONY : CMakeFiles/tui.dir/rule
