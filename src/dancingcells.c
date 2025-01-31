@@ -118,6 +118,7 @@ void initDancingCellArrays(DancingCellArrays *dancingCellArrays, int *grid) {
     for (int i = 0; i < 324; ++i) {
         dancingCellArrays->itemArray[i] = i;
         dancingCellArrays->setArray[i].pos = i;
+        dancingCellArrays->setArray[i].size = 0;
     }
     dancingCellArrays->nodeArray[0].itm = 0;
     dancingCellArrays->nodeArray[0].loc = 4;
@@ -226,6 +227,13 @@ bool algorithmC(DancingCellArrays dancingCellArrays) {
     int i = -1;
     int minSize = 0;
     bool running = true;
+    
+    for (int i = 0; i < active; i++) {
+        if(dancingCellArrays.setArray[i].size==0) {
+            return false;
+        }
+    }
+
     while (running) {
         minSize = __INT_MAX__;
         for (int k = 0; k < active; ++k) {
